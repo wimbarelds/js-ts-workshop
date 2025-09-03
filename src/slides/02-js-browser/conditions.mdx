@@ -2,7 +2,7 @@
 
 ## Syntax
 
-```javascript
+```js
 if (condition) {
   // code als condition true is
 } else if (anotherCondition) {
@@ -14,7 +14,7 @@ if (condition) {
 
 ## If/Else
 
-```javascript
+```js
 let leeftijd = 18;
 
 if (leeftijd >= 18) {
@@ -26,7 +26,7 @@ if (leeftijd >= 18) {
 
 ## Else if
 
-```javascript
+```js
 let cijfer = 7;
 
 if (cijfer >= 8) {
@@ -40,25 +40,21 @@ if (cijfer >= 8) {
 
 ## Comparison operators
 
-```javascript
+```js
 let a = 5;
 let b = 10;
 
-a == b;   // false (gelijk aan)
-a != b;   // true (niet gelijk aan)
+a === b;  // false (gelijk aan)
+a !== b;  // true (niet gelijk aan)
 a < b;    // true (kleiner dan)
 a > b;    // false (groter dan)
 a <= b;   // true (kleiner of gelijk)
 a >= b;   // false (groter of gelijk)
-
-// Strict comparison (gebruik altijd!)
-a === b;  // false (exact gelijk)
-a !== b;  // true (niet exact gelijk)
 ```
 
 ## Logical operators
 
-```javascript
+```js
 let leeftijd = 20;
 let heeftRijbewijs = true;
 
@@ -80,7 +76,7 @@ if (!heeftRijbewijs) {
 
 ## Ternary operator
 
-```javascript
+```js
 // Syntax: condition ? valueIfTrue : valueIfFalse
 let leeftijd = 20;
 
@@ -91,7 +87,7 @@ console.log(status); // "volwassen"
 
 ## Truthy en Falsy
 
-```javascript
+```js
 // Falsy waarden (worden als false behandeld)
 if (false) { } // false
 if (0) { }     // false

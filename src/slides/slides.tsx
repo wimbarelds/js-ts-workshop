@@ -12,26 +12,26 @@ import Objecten from './02-js-browser/objecten.mdx';
 import Opdracht1 from './02-js-browser/opdracht.mdx';
 import Variables from './02-js-browser/variables.mdx';
 // 03 - JavaScript in Terminal
-import Callbacks from './03-js-vscode/callbacks.mdx';
-import Functions from './03-js-vscode/functions.mdx';
-import Opdracht2 from './03-js-vscode/opdracht.mdx';
-import ProjectSetup from './03-js-vscode/project-setup.mdx';
-import ReferentieGelijkheid from './03-js-vscode/referentie-gelijkheid.mdx';
+import Callbacks from './03-js-terminal/callbacks.mdx';
+import Functions from './03-js-terminal/functions.mdx';
+import Opdracht2 from './03-js-terminal/opdracht.mdx';
+import ReferentieGelijkheid from './03-js-terminal/referentie-gelijkheid.mdx';
+import ProjectSetup from './03-js-terminal/setup.mdx';
 // 04 - TypeScript in Terminal
-import BasicTypes from './04-typescript/basic-types.mdx';
-import CustomTypes from './04-typescript/custom-types.mdx';
-import Opdracht3 from './04-typescript/opdracht.mdx';
-import TsIntro from './04-typescript/ts-intro.mdx';
-import TsSetup from './04-typescript/ts-setup.mdx';
-import UtilityTypes from './04-typescript/utility-types.mdx';
+import BasicTypes from './04-ts-terminal/basic-types.mdx';
+import CustomTypes from './04-ts-terminal/interfaces.mdx';
+import Opdracht3 from './04-ts-terminal/opdracht.mdx';
+import TsSetup from './04-ts-terminal/setup.mdx';
+import TsIntro from './04-ts-terminal/ts-intro.mdx';
+import UtilityTypes from './04-ts-terminal/utility-types.mdx';
 // 05 - Meer JavaScript
-import AsyncAwait from './05-meer-js/async-await.mdx';
-import FetchPromises from './05-meer-js/fetch-promises.mdx';
-import Opdracht4 from './05-meer-js/opdracht.mdx';
+import AsyncAwait from './05-more/async-await.mdx';
+import FetchPromises from './05-more/fetch-promises.mdx';
+import Opdracht4 from './05-more/opdracht.mdx';
 
 export const slides = createSlides([
   createTopic({
-    title: 'Welkom & Intro',
+    title: 'Welkom',
     slides: [
       createSlide({ title: 'Welkom', component: Welkom }),
       createSlide({ title: 'Goals', component: Goals }),
@@ -39,7 +39,7 @@ export const slides = createSlides([
     ],
   }),
   createTopic({
-    title: 'Javascript in de browser (console)',
+    title: 'Javascript (browser)',
     slides: [
       createSlide({ title: 'Variables & Primitieven', component: Variables }),
       createSlide({ title: 'Objecten', component: Objecten }),
@@ -50,7 +50,7 @@ export const slides = createSlides([
     ],
   }),
   createTopic({
-    title: 'Javascript in VS Code (vscode, nodejs)',
+    title: 'Javascript (VSCode)',
     slides: [
       createSlide({ title: 'Project Setup', component: ProjectSetup }),
       createSlide({ title: 'Functies', component: Functions }),
@@ -60,7 +60,7 @@ export const slides = createSlides([
     ],
   }),
   createTopic({
-    title: 'Typescript (vscode, tsx)',
+    title: 'Typescript (VSCode)',
     slides: [
       createSlide({ title: 'Typescript intro', component: TsIntro }),
       createSlide({ title: 'Typescript setup', component: TsSetup }),
@@ -71,7 +71,7 @@ export const slides = createSlides([
     ],
   }),
   createTopic({
-    title: 'Meer Javascript',
+    title: 'Async Await',
     slides: [
       createSlide({ title: 'Fetch, Promises', component: FetchPromises }),
       createSlide({ title: 'Async Await', component: AsyncAwait }),

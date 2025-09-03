@@ -1,11 +1,12 @@
+import mdx from '@mdx-js/rollup';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react-swc';
-import { defineConfig, type UserConfig, type ViteBuilder } from 'vite';
+import rehypeStarryNight from 'rehype-starry-night';
+import { defineConfig, type PluginOption, type UserConfig, type ViteBuilder } from 'vite';
 import {
   virtualImport,
   vitePluginDeferScript,
   vitePluginGhPagesBase,
-  vitePluginMdx,
   vitePluginMuiIcons,
 } from 'wb-slides/vite';
 
@@ -65,4 +66,11 @@ async function importBuildOutput(buildResult: BuildOutput) {
   const rollupOutput = Array.isArray(buildResult) ? buildResult[0] : buildResult;
   if ('emit' in rollupOutput) throw new Error('Received RollupWatcher, expected RollupOutput');
   return await virtualImport(rollupOutput.output[0].code);
+}
+
+function vitePluginMdx(): PluginOption {
+  return {
+    enforce: 'pre',
+    ...mdx({ providerImportSource: '@mdx-js/react', rehypePlugins: [rehypeStarryNight] }),
+  };
 }
