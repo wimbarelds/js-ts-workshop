@@ -1,0 +1,83 @@
+# Variables & Primitieven
+
+## Variabelen declareren
+
+Er zijn drie manieren om variabelen te declareren in JavaScript:
+
+```javascript
+var oudeManier = 'Dit gebruiken we niet meer';
+let veranderbaar = 'Kan aangepast worden';
+const onveranderbaar = 'Kan niet aangepast worden';
+```
+
+## Primitive types
+
+JavaScript heeft 5 relevante primitieve types:
+
+### String
+
+```javascript
+let naam = 'Wim';
+let groet = 'Hallo';
+let template = `Welkom ${naam}!`;
+```
+
+### Number
+
+```javascript
+let geheel = 42;
+let komma = 3.14;
+```
+
+### Boolean
+
+```javascript
+let waar = true;
+let onwaar = false;
+```
+
+### undefined & null
+
+```javascript
+let nietGedefinieerd; // undefined
+let leeg = null;
+```
+
+## Combineren
+
+### Nummers:
+
+```javascript
+let a = 3;
+let b = 4;
+let c = a + b; // 7
+```
+
+### Strings
+
+```javascript
+let a = '3';
+let b = '4';
+let c = a + b; // '34'
+```
+
+### Booleans
+
+```javascript
+let a = true;
+let b = false;
+let c = a && b; // false
+let d = a || b; // true
+let e = 1 > 3 || (2 > 1 && true); // true
+```
+
+### Mengen?
+
+```javascript
+let a = 'Hallo ' + 1; // 'Hallo 1'
+let b = 'Hallo ' + true; // 'Hallo true'
+let c = 'Hallo ' + null; // 'Hallo null'
+let d = false || 1; // 1
+let e = 5 + '5'; // '55'
+let f = 5 + +'5'; // 10
+```

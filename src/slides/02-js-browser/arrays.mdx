@@ -1,0 +1,52 @@
+# Arrays
+
+## Wat is een Array?
+
+Een array is een **geordende lijst** van waarden (elementen).
+
+```javascript
+const getallen = [1, 2, 3, 4, 5];
+const namen = ['Alice', 'Bob', 'Charlie'];
+const gemixed = [42, 'Hello', true, null];
+```
+
+## Indexing (0-based!)
+
+```javascript
+const fruits = ['appel', 'banaan', 'sinaasappel'];
+
+console.log(fruits[0]); // "appel"
+console.log(fruits[1]); // "banaan"
+console.log(fruits[2]); // "sinaasappel"
+
+// Length property
+console.log(fruits.length); // 3
+
+// Laatste element
+console.log(fruits[fruits.length - 1]); // "sinaasappel"
+```
+
+## Arrays wijzigen
+
+```javascript
+const kleuren = ['rood', 'groen'];
+
+// Element toevoegen
+kleuren.push('blauw'); // Voeg toe: ["rood", "groen", "blauw"]
+```
+
+## Nuttige Array methods
+
+```javascript
+const getallen = [1, 2, 3, 4, 5];
+
+// indexOf - vind de index van een element
+console.log(getallen.indexOf(3)); // 2
+
+// includes - check of element bestaat
+console.log(getallen.includes(4)); // true
+
+// slice - maak een kopie van een deel
+const deel = getallen.slice(1, 3);
+console.log(deel); // [2, 3] (origineel ongewijzigd)
+```

@@ -1,0 +1,116 @@
+# Conditions
+
+## Syntax
+
+```javascript
+if (condition) {
+  // code als condition true is
+} else if (anotherCondition) {
+  // code als anotherCondition true is
+} else {
+  // code als alle conditions false zijn
+}
+```
+
+## If/Else
+
+```javascript
+let leeftijd = 18;
+
+if (leeftijd >= 18) {
+  console.log("Je mag stemmen");
+} else {
+  console.log("Te jong om te stemmen");
+}
+```
+
+## Else if
+
+```javascript
+let cijfer = 7;
+
+if (cijfer >= 8) {
+  console.log("Goed gedaan!");
+} else if (cijfer >= 6) {
+  console.log("Voldoende");
+} else {
+  console.log("Onvoldoende");
+}
+```
+
+## Comparison operators
+
+```javascript
+let a = 5;
+let b = 10;
+
+a == b;   // false (gelijk aan)
+a != b;   // true (niet gelijk aan)
+a < b;    // true (kleiner dan)
+a > b;    // false (groter dan)
+a <= b;   // true (kleiner of gelijk)
+a >= b;   // false (groter of gelijk)
+
+// Strict comparison (gebruik altijd!)
+a === b;  // false (exact gelijk)
+a !== b;  // true (niet exact gelijk)
+```
+
+## Logical operators
+
+```javascript
+let leeftijd = 20;
+let heeftRijbewijs = true;
+
+// AND (&&)
+if (leeftijd >= 18 && heeftRijbewijs) {
+  console.log("Mag autorijden");
+}
+
+// OR (||)
+if (leeftijd < 12 || leeftijd > 65) {
+  console.log("Korting op ticket");
+}
+
+// NOT (!)
+if (!heeftRijbewijs) {
+  console.log("Eerst rijbewijs halen");
+}
+```
+
+## Ternary operator
+
+```javascript
+// Syntax: condition ? valueIfTrue : valueIfFalse
+let leeftijd = 20;
+
+// Kort voor if/else
+let status = leeftijd >= 18 ? "volwassen" : "minderjarig";
+console.log(status); // "volwassen"
+```
+
+## Truthy en Falsy
+
+```javascript
+// Falsy waarden (worden als false behandeld)
+if (false) { } // false
+if (0) { }     // false
+if ("") { }    // false (lege string)
+if (null) { }  // false
+if (undefined) { } // false
+
+// Truthy waarden (worden als true behandeld)
+if (true) { }    // true
+if (1) { }       // true
+if ("hallo") { } // true (niet-lege string)
+if ([]) { }      // true (lege array)
+if ({}) { }      // true (leeg object)
+
+// Praktisch voorbeeld
+let naam = "";
+if (naam) {
+  console.log(`Hallo ${naam}`);
+} else {
+  console.log("Geen naam ingevoerd");
+}
+```

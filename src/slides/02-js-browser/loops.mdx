@@ -1,0 +1,78 @@
+# Loops
+
+## For loop syntax
+
+```javascript
+for ([initialize]; [condition]; [increment]) {
+  // code die herhaald wordt
+}
+```
+
+## For loop
+
+De meest gebruikte loop voor een **vooraf bekend aantal herhalingen**.
+
+```javascript
+for (let i = 0; i < 5; i++) {
+  console.log(`Nummer: ${i}`);
+}
+// Output: Nummer: 0, 1, 2, 3, 4
+
+// Countdown
+for (let i = 3; i >= 1; i--) {
+  console.log(i);
+}
+console.log("🚀 Start!");
+```
+
+## While loop syntax
+
+```javascript
+while (condition) {
+  // code die herhaald wordt
+  // vergeet niet de condition te veranderen!
+}
+```
+
+## While loop
+
+Voor loops waar je **niet weet hoeveel iteraties** je nodig hebt.
+
+```javascript
+let getal = 1;
+
+while (getal <= 3) {
+  console.log(`Getal is: ${getal}`);
+  getal++; // Vergeet dit niet!
+}
+```
+
+## For...of loop (Arrays)
+
+**Beste manier** om door een array te loopen.
+
+```javascript
+// Syntax: for (const element of array)
+const kleuren = ["rood", "groen", "blauw"];
+
+for (const kleur of kleuren) {
+  console.log(kleur);
+}
+```
+
+## For...in loop (Objects)
+
+Voor het doorlopen van **object properties**.
+
+```javascript
+// Syntax: for (const key in object)
+const persoon = {
+  naam: "Alice",
+  leeftijd: 25,
+  stad: "Amsterdam"
+};
+
+for (const key in persoon) {
+  console.log(`${key}: ${persoon[key]}`);
+}
+```

@@ -1,0 +1,101 @@
+name: 'Feature deploy'
+
+on:
+  issue_comment:
+    types: [created]
+
+concurrency:
+  group: pr-preview-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  pull-requests: write
+
+jobs:
+  feature-deploy:
+    if: |
+      ${{ github.event.issue.pull_request && github.event.comment.body == 'trigger: deploy' && contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.comment.author_association) }}
+
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    strategy:
+      matrix:
+        node-version: [22]
+
+    steps:
+      - name: 'Acknowledge command with reaction'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          comment-id: ${{ github.event.comment.id }}
+          reactions: '+1'
+
+      - name: 'Get PR branch name'
+        id: get_branch
+        uses: xt0rted/pull-request-comment-branch@v2
+
+      - name: 'Checkout PR branch'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.get_branch.outputs.head_ref }}
+
+      - name: 'Install pnpm'
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Download currently deployed site files
+        run: |
+          REPO_OWNER="${{ github.repository_owner }}"
+          REPO_NAME=$(basename "$GITHUB_REPOSITORY")
+          PR_NUMBER=${{ github.event.issue.number }}
+
+          DOWNLOAD_URL="https://$REPO_OWNER.github.io/$REPO_NAME/files.zip"
+          LOCAL_ZIP_PATH="./files.zip"
+
+          echo "Attempting to download deployed files from: $DOWNLOAD_URL"
+          curl -L -f -o "$LOCAL_ZIP_PATH" "$DOWNLOAD_URL"
+          echo "Downloaded $DOWNLOAD_URL to $LOCAL_ZIP_PATH"
+
+          if file "$LOCAL_ZIP_PATH" | grep -q "Zip archive data"; then
+            unzip "$LOCAL_ZIP_PATH" -d .
+            rm "$LOCAL_ZIP_PATH"
+            echo "Downloaded and unpacked files from previous deployment"
+          else
+            echo "Error: Downloaded file is not a valid zip archive."
+            exit 1
+          fi
+
+      - name: 'Setup Node.js'
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: 'Install dependencies'
+        run: pnpm install
+
+      - name: 'Build for PR Preview'
+        run: |
+          REPO_NAME=$(basename "$GITHUB_REPOSITORY")
+          PR_NUMBER=${{ github.event.issue.number }}
+          pnpm run build --base "/$REPO_NAME/pr/$PR_NUMBER/" --outDir "dist/pr/$PR_NUMBER"
+
+      - name: Zip build artifacts and include in dist
+        run: zip -r dist/files.zip dist
+
+      - name: 'Upload Pages artifact'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: 'Deploy to GitHub Pages'
+        id: deployment
+        uses: actions/deploy-pages@v4

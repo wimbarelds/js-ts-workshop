@@ -1,0 +1,56 @@
+# Objecten
+
+## Wat is een Object?
+
+Een object is een collectie van **key-value pairs** (eigenschappen).
+
+```javascript
+const persoon = {
+  naam: "Alice",
+  leeftijd: 25,
+  stad: "Amsterdam"
+};
+```
+
+## Properties toegankelijk maken
+
+```javascript
+// Dot notation (meest gebruikt)
+console.log(persoon.naam);     // "Alice"
+console.log(persoon.leeftijd); // 25
+
+// Bracket notation
+console.log(persoon["naam"]);     // "Alice"
+
+// Handig voor dynamische keys:
+const eigenschap = "stad";
+console.log(persoon[eigenschap]); // "Amsterdam"
+```
+
+## Properties wijzigen
+
+```javascript
+// Bestaande property wijzigen
+persoon.leeftijd = 26;
+
+// Nieuwe property toevoegen
+persoon.beroep = "Developer";
+persoon["hobby"] = "Programmeren";
+```
+
+## Nested objects
+
+```javascript
+const student = {
+  naam: "Alice",
+  leeftijd: 20,
+  adres: {
+    straat: "Hoofdstraat 1",
+    stad: "Amsterdam",
+    postcode: "1000AA"
+  }
+};
+
+console.log(student.adres.stad); // "Amsterdam"
+console.log(student.adres.postcode); // "1000AA"
+```
