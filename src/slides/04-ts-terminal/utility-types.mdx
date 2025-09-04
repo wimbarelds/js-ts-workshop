@@ -55,7 +55,9 @@ type NieuweGebruiker = Omit<Gebruiker, 'id'>;
 function maakGebruiker(data: NieuweGebruiker): Gebruiker {
   return {
     id: Math.random(), // ID wordt automatisch gegenereerd
-    ...data
+    naam: data.naam,
+    email: data.email,
+    actief: data.actief,
   };
 }
 ```
@@ -87,7 +89,7 @@ const messages: StatusMessages = {
 
 ## `ReturnType<T>`
 
-Haalt het **return type** uit een functie.
+Gebruik de **return type** van een functie.
 
 ```ts
 function getGebruiker() {

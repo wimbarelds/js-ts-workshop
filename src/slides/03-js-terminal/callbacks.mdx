@@ -5,56 +5,56 @@
 Een **callback** is een functie die als parameter wordt doorgegeven aan een andere functie.
 
 ```js
-function verwerkGetal(getal, actie) {
-  console.log(`Het getal is: ${getal}`);
-  actie(getal); // Roep de callback functie aan
+function plus(x, y) {
+  return x + y;
+}
+function times(x, y) {
+  return x * y;
 }
 
-// Callback functie
-function dubbel(x) {
-  console.log(`Dubbel: ${x * 2}`);
+function handleNumbers(x, y, callback) {
+  const result = callback(x, y);
+  console.log(result);
 }
 
 // Gebruik de callback
-verwerkGetal(5, dubbel);
-// Output:
-// "Het getal is: 5"
-// "Dubbel: 10"
+handleNumbers(5, 7, times);
+// Resultaat: 35
 ```
 
 ## Callbacks met arrow functies
 
-```js
-function verwerkGetal(getal, actie) {
-  console.log(`Het getal is: ${getal}`);
-  actie(getal);
-}
+Vaak wordt voor callbacks een inline arrow functie gebruikt. Ofwel:
 
-// Inline arrow functie als callback
-verwerkGetal(3, (x) => console.log(`Kwadraat: ${x * x}`));
-// Output:
-// "Het getal is: 3"
-// "Kwadraat: 9"
+```js
+handleNumbers(3, 5, (x, y) => x + y);
+// Resultaat: 8
 ```
 
 ## Array callbacks
 
-JavaScript arrays hebben **ingebouwde functies** die callbacks gebruiken.
+JavaScript heeft een flink aantal array-functies die een callback gebruiken.
+Deze functies krijgen de waardes uit een array 1 voor 1.
 
-### Array.map()
-
-**Transformeert** elk element in een array.
+Bijvoorbeeld, stel:
 
 ```js
-const getallen = [1, 2, 3, 4];
+// Deze functie returned `true` als de waarde eem nummer is, anders false
+function isNumber(value) {
+  return typeof value === 'number';
+}
 
-const dubbels = getallen.map((getal) => getal * 2);
-console.log(dubbels); // [2, 4, 6, 8]
+const myArray = [1, 'hallo', false, 2, true, 'sopra', 3, 'test'];
+const myArrayNumers = myArray.filter(isNumber);
+
+console.log(myArrayNumbers);
+// Resultaat: [1, 2, 3]
 ```
 
-### Array.filter()
+### `Array.filter()`
 
-**Filtert** elementen uit een array.
+Zoals hierboven, de filter methode geeft een nieuwe array terug op basis van het origineel, maar
+alleen met de waardes waarbij de callback functie `true` terug geeft.
 
 ```js
 const getallen = [1, 2, 3, 4, 5, 6];
@@ -65,14 +65,28 @@ console.log(evenGetallen); // [2, 4, 6]
 
 ### Array.find()
 
-**Vindt** het eerste element dat voldoet aan de conditie.
+Vindt het eerste element dat voldoet aan de conditie (waar de functie `truez returned)
 
 ```js
 const personen = [
   { naam: 'Alice', leeftijd: 25 },
-  { naam: 'Bob', leeftijd: 30 }
+  { naam: 'Bob', leeftijd: 30 },
+  { naam: 'Charlie', leeftijd: 35 },
 ];
 
 const oudere = personen.find((persoon) => persoon.leeftijd > 28);
 console.log(oudere); // { naam: 'Bob', leeftijd: 30 }
+```
+
+
+### Array.map()
+
+Maakt een nieuwe array waarin de nieuwe waardes afgeleid zijn van de oude waardes uit de originele
+array.
+
+```js
+const getallen = [1, 2, 3, 4];
+
+const dubbels = getallen.map((getal) => getal * 2);
+console.log(dubbels); // [2, 4, 6, 8]
 ```

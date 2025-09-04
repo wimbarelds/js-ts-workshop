@@ -34,8 +34,8 @@ export const slides = createSlides([
     title: 'Welkom',
     slides: [
       createSlide({ title: 'Welkom', component: Welkom }),
-      createSlide({ title: 'Goals', component: Goals }),
       createSlide({ title: 'Agenda', component: Agenda }),
+      createSlide({ title: 'Goals', component: Goals }),
     ],
   }),
   createTopic({

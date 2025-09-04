@@ -2,15 +2,16 @@
 
 ## Wat is een functie?
 
-Een functie is een **herbruikbaar blok code** dat je kunt aanroepen.
+Een functie is een **herbruikbaar blok code** dat je kunt aanroepen. Het wordt ook gebruikt om
+code die bij elkaar hoort te verzamelen, dat helpt bij het makkelijker leesbaar maken van code.
 
 ```js
-function begroeting() {
+function sayHi() {
   console.log('Hallo!');
 }
 
 // Functie aanroepen
-begroeting(); // "Hallo!"
+sayHi(); // "Hallo!"
 ```
 
 ## Parameters
@@ -18,12 +19,12 @@ begroeting(); // "Hallo!"
 Functies kunnen **input** ontvangen via parameters.
 
 ```js
-function begroeting(naam) {
+function sayHi(naam) {
   console.log(`Hallo ${naam}!`);
 }
 
-begroeting('Alice'); // "Hallo Alice!"
-begroeting('Bob');   // "Hallo Bob!"
+sayHi('Alice'); // "Hallo Alice!"
+sayHi('Bob');   // "Hallo Bob!"
 ```
 
 ## Return waarden
@@ -54,18 +55,18 @@ const kwadraat = (x) => {
   return x * x;
 };
 
-// Extra kort (zonder return)
+// Extra kort (impliciete return)
 const kwadraat = (x) => x * x;
 ```
 
 ## Wanneer welke gebruiken?
 
 ```js
-// Arrow functies voor korte, simpele functies
+// Arrow functies voor korte, simpele functies en bij nested functies (een functie in een functie)
 const dubbel = (x) => x * 2;
 const isEven = (x) => x % 2 === 0;
 
-// Traditionele functies voor complexere logica
+// Traditionele functies voor complexere logica en top-level functies
 function berekenLeeftijd(geboortejaar) {
   const huidigJaar = new Date().getFullYear();
   return huidigJaar - geboortejaar;
