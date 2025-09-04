@@ -1,1 +1,128 @@
 # Interfaces & Custom types
+
+## Object types
+
+Je kunt het **type van een object** specificeren.
+
+```ts
+// Inline object type
+let persoon: { naam: string; leeftijd: number } = {
+  naam: 'Alice',
+  leeftijd: 25
+};
+```
+
+## Interfaces
+
+Een **interface** definieert de vorm van een object.
+
+```ts
+interface Persoon {
+  naam: string;
+  leeftijd: number;
+}
+
+let alice: Persoon = {
+  naam: 'Alice',
+  leeftijd: 25
+};
+
+let bob: Persoon = {
+  naam: 'Bob',
+  leeftijd: 30
+};
+```
+
+## Optional properties
+
+Eigenschappen kunnen **optioneel** zijn met `?`.
+
+```ts
+interface Gebruiker {
+  naam: string;
+  email?: string; // Optioneel
+}
+
+// Beide zijn geldig:
+let gebruiker1: Gebruiker = { naam: 'Alice' };
+let gebruiker2: Gebruiker = { naam: 'Bob', email: 'bob@mail.com' };
+```
+
+## Functies in interfaces
+
+```ts
+interface Calculator {
+  optellen(a: number, b: number): number;
+  aftrekken(a: number, b: number): number;
+}
+
+const calc: Calculator = {
+  optellen: (a, b) => a + b,
+  aftrekken: (a, b) => a - b
+};
+```
+
+## Type aliases
+
+Een andere manier om **custom types** te maken.
+
+```ts
+// Type alias
+type Status = 'actief' | 'inactief' | 'pending';
+
+type Gebruiker = {
+  naam: string;
+  status: Status;
+};
+
+let user: Gebruiker = {
+  naam: 'Alice',
+  status: 'actief'
+};
+```
+
+## Interface vs Type
+
+```ts
+// Interface (uitbreidbaar)
+interface Auto {
+  merk: string;
+}
+
+interface Auto {
+  model: string; // Wordt samengevoegd
+}
+
+// Type alias (niet uitbreidbaar)
+type Fiets = {
+  merk: string;
+  versnellingen: number;
+};
+```
+
+## Praktisch voorbeeld
+
+```ts
+interface Product {
+  id: number;
+  naam: string;
+  prijs: number;
+  beschikbaar?: boolean;
+}
+
+function toonProduct(product: Product): void {
+  console.log(`${product.naam} - €${product.prijs}`);
+  if (product.beschikbaar) {
+    console.log('Op voorraad');
+  }
+}
+
+const laptop: Product = {
+  id: 1,
+  naam: 'MacBook',
+  prijs: 1299,
+  beschikbaar: true
+};
+
+toonProduct(laptop);
+```

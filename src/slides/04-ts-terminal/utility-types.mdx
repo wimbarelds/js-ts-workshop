@@ -1,1 +1,116 @@
 # Utility Types
+
+## Wat zijn Utility Types?
+
+**Utility Types** helpen je om nieuwe types te maken gebaseerd op bestaande types.
+
+```ts
+interface Gebruiker {
+  id: number;
+  naam: string;
+  email: string;
+  actief: boolean;
+}
+```
+
+## `Partial<T>`
+
+Maakt alle eigenschappen **optioneel**.
+
+```ts
+// Alle properties worden optioneel
+type GebruikerUpdate = Partial<Gebruiker>;
+
+function updateGebruiker(id: number, update: GebruikerUpdate) {
+  // Je kunt nu elke combinatie van properties updaten
+}
+
+updateGebruiker(1, { naam: 'Alice' }); // Werkt!
+updateGebruiker(2, { email: 'bob@mail.com', actief: false }); // Werkt ook!
+```
+
+## `Pick<T, K>`
+
+Kiest **specifieke eigenschappen** uit een type.
+
+```ts
+// Alleen naam en email
+type GebruikerContact = Pick<Gebruiker, 'naam' | 'email'>;
+
+const contact: GebruikerContact = {
+  naam: 'Alice',
+  email: 'alice@mail.com'
+  // id en actief zijn niet nodig
+};
+```
+
+## `Omit<T, K>`
+
+**Sluit eigenschappen uit** van een type.
+
+```ts
+// Alles behalve id
+type NieuweGebruiker = Omit<Gebruiker, 'id'>;
+
+function maakGebruiker(data: NieuweGebruiker): Gebruiker {
+  return {
+    id: Math.random(), // ID wordt automatisch gegenereerd
+    ...data
+  };
+}
+```
+
+## `Record<K, T>`
+
+Maakt een **object type** met specifieke keys en value types.
+
+```ts
+// Object met string keys en number values
+type Scores = Record<string, number>;
+
+const spelScores: Scores = {
+  'Alice': 100,
+  'Bob': 85,
+  'Charlie': 92
+};
+
+// Specifieke keys
+type Status = 'loading' | 'success' | 'error';
+type StatusMessages = Record<Status, string>;
+
+const messages: StatusMessages = {
+  loading: 'Bezig met laden...',
+  success: 'Gelukt!',
+  error: 'Er ging iets mis'
+};
+```
+
+## `ReturnType<T>`
+
+Haalt het **return type** uit een functie.
+
+```ts
+function getGebruiker() {
+  return {
+    id: 1,
+    naam: 'Alice',
+    actief: true
+  };
+}
+
+// TypeScript leidt automatisch het return type af
+type GebruikerResult = ReturnType<typeof getGebruiker>;
+// Type wordt: { id: number; naam: string; actief: boolean; }
+
+const gebruiker: GebruikerResult = {
+  id: 2,
+  naam: 'Bob',
+  actief: false
+};
+```
+
+## Meer utility types
+
+Er zijn nog veel meer utility types beschikbaar:
+
+**[TypeScript Handbook - Utility Types](https://www.typescriptlang.org/docs/handbook/utility-types.html)**

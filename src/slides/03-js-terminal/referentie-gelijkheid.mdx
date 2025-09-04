@@ -1,1 +1,80 @@
 # Referentie gelijkheid
+
+## Primitieven vs Objects
+
+### Primitieven (waarde gelijkheid)
+
+```js
+let a = 5;
+let b = 5;
+
+console.log(a === b); // true - zelfde waarde
+
+a = 10;
+console.log(a === b); // false - verschillende waarde
+```
+
+### Objects (referentie gelijkheid)
+
+```js
+let persoon1 = { naam: 'Alice' };
+let persoon2 = { naam: 'Alice' };
+
+console.log(persoon1 === persoon2); // false! - verschillende objecten
+
+// Maar...
+let persoon3 = persoon1; // Zelfde referentie!
+console.log(persoon1 === persoon3); // true
+```
+
+## Waarom is dit belangrijk?
+
+```js
+const origineleArray = [1, 2, 3];
+const kopie = origineleArray; // Geen echte kopie!
+
+kopie.push(4);
+console.log(origineleArray); // [1, 2, 3, 4] - ook veranderd!
+```
+
+## Arrays vergelijken
+
+```js
+const array1 = [1, 2, 3];
+const array2 = [1, 2, 3];
+
+console.log(array1 === array2); // false - verschillende arrays
+console.log(array1[0] === array2[0]); // true - zelfde waarde
+```
+
+## Objects wijzigen via referentie
+
+```js
+const persoon = { naam: 'Alice', leeftijd: 25 };
+const anderePersoon = persoon; // Zelfde referentie
+
+anderePersoon.naam = 'Bob';
+console.log(persoon.naam); // 'Bob' - ook veranderd!
+```
+
+## Oplossing: nieuwe objecten maken
+
+```js
+function verhoogLeeftijd(persoon) {
+  // Verkeerd - wijzigt originele object
+  // persoon.leeftijd++;
+  // return persoon;
+  
+  // Goed - maakt nieuw object
+  return {
+    naam: persoon.naam,
+    leeftijd: persoon.leeftijd + 1
+  };
+}
+
+const alice = { naam: 'Alice', leeftijd: 25 };
+const ouder = verhoogLeeftijd(alice);
+
+console.log(alice.leeftijd); // 25 - onveranderd
+console.log(ouder.leeftijd); // 26
+```

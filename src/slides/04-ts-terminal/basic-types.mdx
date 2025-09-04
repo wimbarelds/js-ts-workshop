@@ -1,1 +1,90 @@
 # Basic Types
+
+## Type annotaties
+
+In TypeScript kun je **types specificeren** voor variabelen.
+
+```ts
+let naam: string = 'Alice';
+let leeftijd: number = 25;
+let actief: boolean = true;
+```
+
+## Primitive types
+
+```ts
+// String
+let groet: string = 'Hallo';
+let template: string = `Welkom ${naam}!`;
+
+// Number
+let geheel: number = 42;
+let komma: number = 3.14;
+
+// Boolean
+let waar: boolean = true;
+let onwaar: boolean = false;
+```
+
+## Arrays
+
+```ts
+// Array van strings
+let namen: string[] = ['Alice', 'Bob', 'Charlie'];
+
+// Array van numbers
+let getallen: number[] = [1, 2, 3, 4, 5];
+
+// Alternatieve syntax (minder gebruikt)
+let kleuren: Array<string> = ['rood', 'groen', 'blauw'];
+```
+
+## Type inference
+
+TypeScript kan types **automatisch afleiden**.
+
+```ts
+// TypeScript weet dat dit een string is
+let naam = 'Alice'; // type: string
+
+// TypeScript weet dat dit een number is
+let leeftijd = 25; // type: number
+
+// Expliciet typen is soms nog steeds handig
+let gebruiker: string; // Later pas waarde toekennen
+```
+
+## Function types
+
+```ts
+// Parameter en return types
+function begroeting(naam: string): string {
+  return `Hallo ${naam}!`;
+}
+
+// Arrow functie
+const optellen = (a: number, b: number): number => {
+  return a + b;
+};
+
+// Void (geen return waarde)
+function logBericht(bericht: string): void {
+  console.log(bericht);
+}
+```
+
+## Type errors
+
+```ts
+let naam: string = 'Alice';
+
+// Dit geeft een error:
+// naam = 123; // Error: Type 'number' is not assignable to type 'string'
+
+// Ook bij functies:
+function dubbel(x: number): number {
+  return x * 2;
+}
+
+// dubbel('hallo'); // Error: Argument of type 'string' is not assignable
+```

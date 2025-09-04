@@ -1,1 +1,78 @@
 # Callbacks
+
+## Wat is een callback?
+
+Een **callback** is een functie die als parameter wordt doorgegeven aan een andere functie.
+
+```js
+function verwerkGetal(getal, actie) {
+  console.log(`Het getal is: ${getal}`);
+  actie(getal); // Roep de callback functie aan
+}
+
+// Callback functie
+function dubbel(x) {
+  console.log(`Dubbel: ${x * 2}`);
+}
+
+// Gebruik de callback
+verwerkGetal(5, dubbel);
+// Output:
+// "Het getal is: 5"
+// "Dubbel: 10"
+```
+
+## Callbacks met arrow functies
+
+```js
+function verwerkGetal(getal, actie) {
+  console.log(`Het getal is: ${getal}`);
+  actie(getal);
+}
+
+// Inline arrow functie als callback
+verwerkGetal(3, (x) => console.log(`Kwadraat: ${x * x}`));
+// Output:
+// "Het getal is: 3"
+// "Kwadraat: 9"
+```
+
+## Array callbacks
+
+JavaScript arrays hebben **ingebouwde functies** die callbacks gebruiken.
+
+### Array.map()
+
+**Transformeert** elk element in een array.
+
+```js
+const getallen = [1, 2, 3, 4];
+
+const dubbels = getallen.map((getal) => getal * 2);
+console.log(dubbels); // [2, 4, 6, 8]
+```
+
+### Array.filter()
+
+**Filtert** elementen uit een array.
+
+```js
+const getallen = [1, 2, 3, 4, 5, 6];
+
+const evenGetallen = getallen.filter((getal) => getal % 2 === 0);
+console.log(evenGetallen); // [2, 4, 6]
+```
+
+### Array.find()
+
+**Vindt** het eerste element dat voldoet aan de conditie.
+
+```js
+const personen = [
+  { naam: 'Alice', leeftijd: 25 },
+  { naam: 'Bob', leeftijd: 30 }
+];
+
+const oudere = personen.find((persoon) => persoon.leeftijd > 28);
+console.log(oudere); // { naam: 'Bob', leeftijd: 30 }
+```
