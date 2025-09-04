@@ -79,12 +79,17 @@ function logBericht(bericht: string): void {
 let naam: string = 'Alice';
 
 // Dit geeft een error:
-// naam = 123; // Error: Type 'number' is not assignable to type 'string'
+naam = 123;
+// Error: Type 'number' is not assignable to type 'string'
+```
 
-// Ook bij functies:
+Ook bij functies:
+
+```ts
 function dubbel(x: number): number {
   return x * 2;
 }
 
-// dubbel('hallo'); // Error: Argument of type 'string' is not assignable
+dubbel('hallo');
+// Error: Argument of type 'string' is not assignable
 ```
